@@ -3,14 +3,14 @@
             [cheshire.core :as json]
             [kees.mb.util :as util]))
 
-(def api-base "https://api.are.na/v2")
-(def per 100)
+(def ^:private api-base "https://api.are.na/v2")
+(def ^:private per 100)
 
-(defn form-url
+(defn- form-url
   [& paths]
   (reduce str (interpose \/ (vec paths))))
 
-(defn is-channel-valid?
+(defn- is-channel-valid?
   [slug]
   (let [req (form-url api-base "channels" slug)
         opts {:headers {"Accept" "application/json"}
@@ -19,7 +19,7 @@
         res (http/get req opts)]
     (-> res :status (= 200))))
 
-(defn channel-length
+(defn- channel-length
   [slug]
   (let [req (form-url api-base "channels" slug)
         opts {:headers {"Accept" "application/json"}
@@ -40,15 +40,9 @@
       (-> res :body (json/decode keyword) :contents))))
 
 (defn channel-contents
-  [{:keys [slug per]}]
+  [{:keys [slug per] :or {per per}}]
   (let [len (channel-length slug)
         pages (util/ceil (/ len per))
         requester (channel-contents-page-requester {:slug slug :per per})
         data (into [] (map requester) (range 1 (inc pages)))]
     (reduce into [] data)))
-
-(comment
-  (is-channel-valid? "villainy")
-  (is-channel-valid? "villazziny")
-  (channel-length "villainy")
-  (channel-contents {:slug "hardly" :per 5}))
