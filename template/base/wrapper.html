@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{none}}</title>
+  <!-- <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+  <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#FF8AD8">
+  <meta name="msapplication-TileColor" content="#FF8AD8"> -->
+  <meta name="theme-color" content="#ffffff">
+  <base target="_blank">
+  <!-- <meta property="og:site_name" content="{{none}}">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="{{none}}">
+  <meta property="og:title" content="{{none}}">
+  <meta property="og:description" content="{{none}}">
+  <meta property="article:published_at" content="{{date|date:"yyyy-MM-dd'T'HH:mm:ss"}}">
+  <meta property="article:publisher" content="{{none}}">
+  <meta property="article:author" content="{{none}}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="{{none}}">
+  <meta name="twitter:title" content="{{none}}">
+  <meta name="twitter:site" content="{{none}}">
+  <meta name="twitter:creator" content="{{none}}">
+  <meta property="twitter:author" content="{{none}}">
+  <meta property="twitter:description" content="{{none}}">
+  <meta name="canonical" content="{{none}}"> -->
+  <!-- <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/main.css"> -->
+  <style>
+    /* CSS reset */
+    *, *::before, *::after {box-sizing: border-box;}
+    * {margin: 0; outline: 1px solid red;}
+    html {height: 100%;}
+    body {line-height: 1.5; -webkit-font-smoothing: antialiased;}
+    img, picture, video, canvas, svg {display: block; max-width: 100%;}
+    input, button, textarea, select {font: inherit;}
+    p, h1, h2, h3, h4, h5, h6 {overflow-wrap: break-word;}
+    #root, #__next {isolation: isolate;}
+    body {
+      background: lightgoldenrodyellow;
+      max-width: 100vw;
+    }
+    main {
+      background: lightgreen;
+    }
+    #image-display {
+      background: coral;
+      display: flex;
+      flex-flow: column nowrap;
+      place-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+  </header>
+
+  <main>
+    {% block main %}{% endblock %}
+  </main>
+</body>
+
+</html>

@@ -1,2 +1,5 @@
-{:paths ["src"]
- :deps {meander/epsilon {:mvn/version "0.0.650"}}}
+{:paths ["src"
+         "."
+         "template"]
+ :deps {meander/epsilon {:mvn/version "0.0.650"}
+        selmer/selmer {:mvn/version "1.12.61"}}}
