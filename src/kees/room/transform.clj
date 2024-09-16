@@ -1,4 +1,4 @@
-(ns kees.mb.transform
+(ns kees.room.transform
   (:require [meander.epsilon :as m]))
 
 (defmulti sanitize :class)
@@ -69,9 +69,12 @@
   [block]
   (m/match block
     {:class ?class
-     :title ?title}
+     :title ?title
+     :slug ?slug
+     :owner_slug ?owner_slug}
     {:class ?class
-     :title ?title}))
+     :title ?title
+     :url (str "https://are.na/" ?owner_slug "/" ?slug)}))
 
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (defmethod sanitize :default

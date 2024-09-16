@@ -1,4 +1,4 @@
-(ns kees.mb.util
+(ns kees.room.util
   (:require [clojure.pprint]))
 
 (defn ceil

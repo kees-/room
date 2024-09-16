@@ -1,7 +1,7 @@
-(ns kees.mb.data
+(ns kees.room.data
   (:require [babashka.http-client :as http]
             [cheshire.core :as json]
-            [kees.mb.util :as util]))
+            [kees.room.util :as util]))
 
 (def ^:private api-base "https://api.are.na/v2")
 (def ^:private per 100)

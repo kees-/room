@@ -1,8 +1,8 @@
-(ns kees.mb.main
+(ns kees.room.main
   (:require [clojure.pprint]
-            [kees.mb.data :as data]
-            [kees.mb.transform :as transform]
-            [kees.mb.util :as util]
+            [kees.room.data :as data]
+            [kees.room.transform :as transform]
+            [kees.room.util :as util]
             [selmer.parser :as selmer]))
 
 (comment
@@ -10,9 +10,9 @@
 
   (mapv transform/sanitize (data/channel-contents {:slug "hardly"}))
   
-  (->> (data/channel-contents {:slug "hardly"})
+  (->> (data/channel-contents {:slug "van-helsing"})
        (mapv transform/sanitize)
-       (util/pretty-spit "sample.edn"))
+       (util/pretty-spit "target/sample.edn"))
   
   (defonce sample-image
     (second
@@ -20,4 +20,4 @@
            (data/channel-contents {:slug "hardly"}))))
   
   (->> (selmer/render-file "block/image.html" sample-image)
-       (spit "sample.html")))
+       (spit "target/sample.html")))
