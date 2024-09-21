@@ -1,6 +1,6 @@
-{% extends "base/slide.html" %}
+{% extends "base/wrapper.html" %}
 
 {% block content %}
-      <img src="{{image}}">
+      <a href="{{image}}" target="_blank"><img src="{{image}}"></a>
       <span id="caption">{{title}}</span>
 {% endblock %}

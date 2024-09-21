@@ -1,7 +1,10 @@
 (ns kees.room.transform
-  (:require [meander.epsilon :as m]))
+  (:require [clojure.string :as s]
+            [meander.epsilon :as m]))
 
-(defmulti sanitize :class)
+(defmulti
+  "Given a complete arena block object with all data, pare its irrelevant keys."
+  sanitize :class)
 
 #_{:clj-kondo/ignore [:unresolved-symbol]}
 (defmethod sanitize "Image"
@@ -10,7 +13,7 @@
     {:class ?class
      :title ?title
      :image {:original {:url ?url}}}
-    {:class ?class
+    {:class (s/lower-case ?class)
      :title ?title
      :image ?url}))
 
@@ -22,7 +25,7 @@
      :title ?title
      :source {:url ?source}
      :image {:original {:url ?image}}}
-    {:class ?class
+    {:class (s/lower-case ?class)
      :title ?title
      :source ?source
      :image ?image}))
@@ -35,7 +38,7 @@
      :title ?title
      :source {:url ?source}
      :image {:original {:url ?image}}}
-    {:class ?class
+    {:class (s/lower-case ?class)
      :title ?title
      :source ?source
      :image ?image}))
@@ -47,7 +50,7 @@
     {:class ?class
      :title ?title
      :content_html ?content}
-    {:class ?class
+    {:class (s/lower-case ?class)
      :title ?title
      :text ?content}))
 
@@ -59,7 +62,7 @@
      :title ?title
      :image {:original {:url ?image}}
      :attachment {:url ?source}}
-    {:class ?class
+    {:class (s/lower-case ?class)
      :title ?title
      :image ?image
      :source ?source}))
@@ -72,7 +75,7 @@
      :title ?title
      :slug ?slug
      :owner_slug ?owner_slug}
-    {:class ?class
+    {:class (s/lower-case ?class)
      :title ?title
      :url (str "https://are.na/" ?owner_slug "/" ?slug)}))
 
@@ -82,5 +85,5 @@
   (m/match block
     {:class ?class
      :title ?title}
-    {:class ?class
+    {:class (s/lower-case ?class)
      :title ?title}))

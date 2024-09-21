@@ -37,8 +37,11 @@
   <style>
     /* CSS reset */
     *, *::before, *::after {box-sizing: border-box;}
-    * {margin: 0; outline: 1px solid red;}
-    html {height: 100%;}
+    * {
+      margin: 0;
+      /* outline: 1px solid red; */
+    }
+    /* html {height: 100%;} */
     body {line-height: 1.5; -webkit-font-smoothing: antialiased;}
     img, picture, video, canvas, svg {display: block; max-width: 100%;}
     input, button, textarea, select {font: inherit;}
@@ -46,16 +49,25 @@
     #root, #__next {isolation: isolate;}
     body {
       background: lightgoldenrodyellow;
-      max-width: 100vw;
     }
     main {
       background: lightgreen;
     }
-    #image-display {
+    #flex-wrapper {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+    }
+    #wrapper {
       background: coral;
       display: flex;
       flex-flow: column nowrap;
-      place-content: center;
+      align-items: center;
+      flex-grow: 0;
+    }
+    img {
+      object-fit: contain;
+      max-height: 100vh;
     }
   </style>
 </head>
@@ -65,7 +77,12 @@
   </header>
 
   <main>
-    {% block main %}{% endblock %}
+    <div id="flex-wrapper">
+      <div id="wrapper">
+        {% block content %}placeholder{% endblock %}
+      </div>
+      <span>Class: {{class}}</span>
+    </div>
   </main>
 </body>
 

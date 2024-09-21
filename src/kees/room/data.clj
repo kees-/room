@@ -7,10 +7,12 @@
 (def ^:private per 100)
 
 (defn- form-url
+  "Add slashes between given paths."
   [& paths]
   (reduce str (interpose \/ (vec paths))))
 
 (defn- is-channel-valid?
+  "Truthy if HTML response for a channel is 200."
   [slug]
   (let [req (form-url api-base "channels" slug)
         opts {:headers {"Accept" "application/json"}
@@ -20,6 +22,7 @@
     (-> res :status (= 200))))
 
 (defn- channel-length
+  "Return number of blocks in a channel."
   [slug]
   (let [req (form-url api-base "channels" slug)
         opts {:headers {"Accept" "application/json"}
@@ -27,7 +30,8 @@
         res (http/get req opts)]
     (-> res :body (json/decode keyword) :length)))
 
-(defn- channel-contents-page-requester
+(defn- channel-contents-requester
+  "Retrieve a page's worth of blocks from a channel"
   [{:keys [slug per]}]
   (fn [page]
     (let [req (form-url api-base "channels" slug "contents")
@@ -40,9 +44,10 @@
       (-> res :body (json/decode keyword) :contents))))
 
 (defn channel-contents
+  "Get the full contents of an arena channel."
   [{:keys [slug per] :or {per per}}]
   (let [len (channel-length slug)
         pages (util/ceil (/ len per))
-        requester (channel-contents-page-requester {:slug slug :per per})
+        requester (channel-contents-requester {:slug slug :per per})
         data (into [] (map requester) (range 1 (inc pages)))]
     (reduce into [] data)))
